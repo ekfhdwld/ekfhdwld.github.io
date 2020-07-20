@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주도 여행</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <style>
+        body{
+                background-image: url('images/제주배경.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 0px;
+        }
+
+        #topMenu {            
+                height: 50px; 
+                width: 90%; 
+                margin-left: auto;
+                margin-right: auto;
+        }
+        #topMenu ul li {                       
+                list-style: none;           
+                color: white;              
+                /* background-color: #2d2d2d;   */
+                background-color: rgba(7, 123, 255, 0.3);
+                float: left;                
+                line-height: 40px;          
+                vertical-align: middle;     
+                text-align: center;         
+        }
+        #topMenu .menuLink {                               
+                text-decoration:none;                      
+                color: white;                              
+                display: block;                       
+                width: 300px;             
+                height: 35px;    
+                padding-top: 5px;     
+                font-size: 20px;                           
+                font-weight: bold;                         
+                font-family: "Trebuchet MS", Dotum, Arial; 
+        }
+        #topMenu .menuLink:hover {            
+                color: pink;                   
+                /* background-color: #4d4d4d;     */
+                background-color: rgb(0, 183, 255);    
+        }
+
+        #topMenu li ul li { 
+                -webkit-transition: height 0.5s;
+                -moz-transition: height 0.5s;
+                -o-transition: height 0.5s;
+                transition: height 0.5s;
+        }
+        
+        
+        #topMenu li ul { 
+                -webkit-transition: all 1s;
+                -moz-transition: all 1s;
+                -o-transition: all 1s;
+                transition: all 1s; 
+        }
+
+        #topMenu li ul li {
+		float: none;
+		height: 30px; 
+		line-height: 30px;
+		padding:5px 0;
+		background: none;
+	}
+
+        #topMenu li:hover ul {
+		display: inline-block;
+	}
+
+     
+
+        #topMenu li ul {
+		display:none;
+		position: relative;
+		width: 300px;
+                background-color: rgb(0, 183, 255);    
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+
+        .subMenu div{
+                width: 100%;
+                height: 100%;
+                float: center;
+                margin: 0px;
+        }
+
+       .subMenu:hover , .subMenu:hover div{
+               background-color: rgb(4, 141, 233);
+               color: white;
+       }
+        
+        .bottom{
+                width: 400px;
+                height: 400px;
+                background: pink;;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 100px;
+                border: 5px solid white;
+                border-radius: 20%;
+                padding: 15px;
+                text-align: center;
+                visibility: hidden;
+                z-index: 5;
+        }
+
+        #btmImg{
+                width: 300px;
+                height: 300px;
+                margin-right: auto;
+                margin-left: auto;
+                border-radius: 10%;
+                border: 3px solid white;
+        }
+
+        p{
+                margin-top: 0px;
+                margin-bottom: 20px;
+        }
+
+        h2{
+                margin: 0px;
+                transition: all 0.1s; 
+        }
+
+        #logo{
+                width: 400px;
+                position: absolute;
+                left: 1000px;
+                top: 460px;
+                z-index: 0;
+        }
+       
+    </style>
+    </head>
+    <body>
+        <nav id="topMenu" >
+            <ul>
+                <li><div class="menuLink">먹거리</div>
+                        <ul>
+                                <li class="subMenu"><div class="selectMenu" id="div1">돈대표</div></li>
+                        </ul>
+                </li>
+                <li>|</li>
+                <li><div class="menuLink">카페</div>
+                        <ul>
+                                <li class="subMenu"><div class="selectMenu" id="div2">5L2F</div></li>
+                                <li class="subMenu"><div class="selectMenu" id="div3">뵤뵤</div></li>
+                        </ul>
+                </li>
+                <li>|</li>
+                <li><div class="menuLink">관광명소</div>
+                        <ul>
+                                <li class="subMenu"><div class="selectMenu" id="div4">사려니 숲길</div></li>
+                        </ul>
+                </li>
+                <li>|</li>
+                <li><div class="menuLink">액비티비</div>
+                        <ul>
+                                <li class="subMenu"><div class="selectMenu" id="div5">패러글라이딩</div></li>
+                        </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="bottom">
+                <div class="bottom-desc">
+                       <h2></h2>
+                        <p id="address"></p>
+                </div>
+                <div class="bottom-img">
+                       <img src="" alt="" id="btmImg">
+                </div>
+        </div>
+        <div><img src="images/jejuIsland.png" alt="" id="logo"></div>
+
+    <script>
+        $("#div1").hover(function(){
+                $("h2").html("돈대표");
+                $("#address").html("제주 제주시 조천읍 함덕로 20");
+                $("#btmImg").css('visibility','visible');
+                $(".bottom").css('visibility', 'visible');
+                $("#btmImg").attr("src",'./images/img1.jpg');
+        },function(){
+                $("h2").html("");
+                $("#address").html("");
+                $("#btmImg").css('visibility','hidden');
+                $(".bottom").css('visibility', 'hidden');
+        });
+        
+        $("#div2").hover(function(){
+                $("h2").html("5L2F");
+                $(".bottom").css('visibility', 'visible');
+                $("#address").html("제주 제주시 조천읍 와흘상길 30");
+                $("#btmImg").css('visibility','visible');
+                $("#btmImg").attr("src",'./images/img2.jpg');
+        },function(){
+                $("h2").html("");
+                $("#address").html("");
+                $("#btmImg").css('visibility','hidden');
+                $(".bottom").css('visibility', 'hidden');
+        });
+
+        $("#div3").hover(function(){
+                $("h2").html("카페 뵤뵤");
+                $(".bottom").css('visibility', 'visible');
+                $("#address").html("제주 제주시 한림읍 명재로 155");
+                $("#btmImg").css('visibility','visible');
+                $("#btmImg").attr("src",'./images/img3.jpg');
+        },function(){
+                $("h2").html("");
+                $("#address").html("");
+                $("#btmImg").css('visibility','hidden');
+                $(".bottom").css('visibility', 'hidden');
+        });
+
+        $("#div4").hover(function(){
+                $("h2").html("사려니 숲길(한라산둘레길)");
+                $(".bottom").css('visibility', 'visible');
+                $("#address").html("제주 제주시 조천읍 교래리 산137-1");
+                $("#btmImg").css('visibility','visible');
+                $("#btmImg").attr("src",'./images/img4.jpg');
+        },function(){
+                $("h2").html("");
+                $("#address").html("");
+                $("#btmImg").css('visibility','hidden');
+                $(".bottom").css('visibility', 'hidden');
+        });
+
+        $("#div5").hover(function(){
+                $("h2").html("금오름 패러글라이딩");
+                $(".bottom").css('visibility', 'visible');
+                $("#address").html("제주 제주시 한림읍 금악리 산1-1");
+                $("#btmImg").css('visibility','visible');
+                $("#btmImg").attr("src",'./images/img5.jpg');
+        },function(){
+                $("h2").html("");
+                $("#address").html("");
+                $("#btmImg").css('visibility','hidden');
+                $(".bottom").css('visibility', 'hidden');
+        });
+    </script>
+    </body>
+</html>

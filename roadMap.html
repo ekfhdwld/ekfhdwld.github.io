@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개발자 로드맵</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <style>
+    h1{
+        text-align: center;
+        font-size: 80px;
+        color: steelblue;
+    }
+
+    h2{
+        margin-top: -20px;
+        font-size: 18px;
+    }
+
+    .container{
+        margin-top: 200px;
+    }
+
+    #line{
+        width: 100%;
+        height: 30px;
+        background-color: rgb(91, 172, 238);
+        position: relative;
+        margin-top: -250px;
+        z-index: 3;
+    }
+  
+    .circle{
+        display: inline-block;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        background-color: rgb(91, 172, 238);
+        border-radius: 50%;
+        text-align: center;
+        padding: 0px;
+        line-height: 200px;
+        float: left;
+        margin-left: 70px;
+        margin-top: -100px;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+        z-index: 6;
+    }
+
+    .circle-area{
+        width: 90%;
+        height: 220px;
+        margin-left: auto;
+        margin-right: auto;
+        /* border: 1px solid black; */
+    }
+    
+    .desc-area{
+        width: 100%;
+        height: 350px;
+    }
+
+    .desc{
+        width: 200px;
+        height: 300px;
+        background-color: pink;
+        margin-left: 20px;
+        display: inline-block;
+        margin-top: 20px;
+        float: left;
+        visibility: hidden;
+        border-radius: 15%;
+        list-style: none;
+    }
+
+    #desc1{
+        width: 200px;
+        height: 300px;
+        background-color: pink;
+        display: inline-block;
+        margin-left: 120px;
+        margin-top: 20px;
+        visibility: hidden;
+        list-style: none;
+    }
+
+    #desc3 li, #desc6 li{
+        font-size: 20px;
+        margin-top: 20px;
+        color: white;
+    }
+
+    #algorithm-ul li, #os-ul li, #cloud-ul li{
+        font-size: 15px;
+        margin-top: 0px;
+        color: white;
+    }
+
+    #desc1 li, #desc2 li, #desc4 li , #desc5 li{
+        font-size: 30px;
+        margin-bottom: 35px;
+        color: white;
+    }
+
+    </style>
+</head>
+<body>
+    <h1>ROAD MAP</h1>
+    <div class="container">
+        <div class="wrapper">
+            <div class="circle-area">
+                <div class="circle" id="circle1"><h2>프로그래밍 언어</h2></div>
+                <div class="circle" id="circle2"><h2>프론트엔드 기초</h2></div>
+                <div class="circle" id="circle3"><h2>OS & 알고리즘</h2></div>
+                <div class="circle" id="circle4"><h2>API/Framework</h2></div>
+                <div class="circle" id="circle5"><h2>저장소 & DB</h2></div>
+                <div class="circle" id="circle6"><h2>ETC</h2></div>
+            </div>
+            <div id="line"></div>
+            <div class="desc-area">
+                <div class="desc" id="desc1">
+                    <ul>
+                        <li>Java</li>
+                        <li>Phython</li>
+                        <li>GO</li>
+                    </ul>
+                </div>
+                <div class="desc" id="desc2">
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Java Script</li>
+                    </ul>
+                </div>
+                <div class="desc" id="desc3">
+                    <ul>
+                        <li>알고리즘
+                            <ul id="algorithm-ul">
+                                <li>정렬, 탐색, 트리, 힙</li>
+                                <li>DFS, BFS</li>
+                                <li>최단거리</li>
+                            </ul>
+                        </li>
+                        <li>OS
+                            <ul id="os-ul">
+                                <li>OS 작동방식</li>
+                                <li>프로세스 관리</li>
+                                <li>스레드와 동시성</li>
+                                <li>메모리 관리</li>
+                                <li>프로세스간 통신</li>
+                                <li>터미널 사용법</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="desc" id="desc4">
+                    <ul>
+                        <li>REST</li>
+                        <li>SOAP</li>
+                        <li>Spring Framework</li>
+                    </ul>
+                </div>
+                <div class="desc" id="desc5">
+                    <ul>
+                        <li>GitHub</li>
+                        <li>MongoDB</li>
+                    </ul>
+                </div>
+                <div class="desc" id="desc6">
+                    <ul>
+                        <li>클라우드
+                           <ul id="cloud-ul">
+                            <li>AWS</li>
+                            <li>Alibaba cloud</li>
+                           </ul>
+                        </li>
+                        <li>Tomcat</li>
+                        <li>kafka Stream</li>
+                        <li>Elastic Search</li>
+                        <li>Docker</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(function(){
+        $('#circle1').hover(function(){
+             $('#desc1').css('visibility','visible');
+        }, function(){
+            $('#desc1').css('visibility','hidden');
+        });
+
+        $('#circle2').hover(function(){
+            $('#desc2').css('visibility','visible');
+        }, function(){
+            $('#desc2').css('visibility','hidden');
+        });
+
+        $('#circle3').hover(function(){
+            $('#desc3').css('visibility','visible');
+        }, function(){
+            $('#desc3').css('visibility','hidden');
+        });
+
+        $('#circle4').hover(function(){
+            $('#desc4').css('visibility','visible');
+        }, function(){
+            $('#desc4').css('visibility','hidden');
+        });
+
+        $('#circle5').hover(function(){
+            $('#desc5').css('visibility','visible');
+        }, function(){
+            $('#desc5').css('visibility','hidden');
+        });
+
+        $('#circle6').hover(function(){
+            $('#desc6').css('visibility','visible');
+        }, function(){
+            $('#desc6').css('visibility','hidden');
+        });
+    });
+    </script>
+</body>
+</html>

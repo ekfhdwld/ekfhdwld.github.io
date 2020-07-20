@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <style>
+     h1 {
+        text-align: center;
+        font-size: 90px;
+        color: steelblue;
+        margin-bottom: 10px;
+    }    
+
+    .area input{
+        width: 360px;
+        height: 25px;
+        margin-left: 8px;
+        border: 0px;
+        font-size: 21px;
+    }
+
+    .area{
+        width: 100%;
+        height: 40px;
+        border: 0.5px solid lightgray;
+        margin: 0px 0px 10px;
+        padding-top: 10px;
+    }
+
+    #btnLogin_area button{
+        display: inline-block;
+        width: 49%;
+        height: 50px;
+        border: 0.5px solid lightgray;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+        background-color: steelblue;
+        font-weight: bold;
+        color: white;
+    }
+
+    fieldset {
+        width: 500px;
+        height: 200px;
+        padding: 0px;
+        border: 0px;
+
+    }
+
+    .wrapper {
+        margin-top: 70px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #join{
+        float: right;
+       
+    }
+
+    #joinHTML{
+        text-decoration: none;
+        color: white;
+    }
+
+    table, th, td{
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+        margin-top: 20px;
+        background-color: blanchedalmond;
+    }
+
+    .tbl-area{
+        margin-left: 20px;
+        text-align: center;
+        margin-top: 20px;
+        padding: 0px;
+    }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <div class="container">
+        <div class="wrapper">
+            <fieldset>
+                <div id="id_area" class="area">
+                    <input type="text" name="id" id="id" placeholder="아이디">
+                </div>
+                <div id="pw_area" class="area">
+                    <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호">
+                </div>
+                <div id="btnLogin_area">
+                    <button type="button" id="login" onclick="movePage();">로그인</button>
+                    <button type="button" id="join" onclick="location.href='/join.html'">회원가입</button>
+                </div>
+            </fieldset>
+        </div>
+        <div class="tbl-area">
+            <button id="btn" onclick="displayEntry();">회원목록 확인하기</button>
+            <table id="tbl-entry"></table>
+        </div>
+    </div>
+    
+    
+
+    <script>
+    function movePage(){
+        //아이디 비번 확인 작업 true시 
+        if(checkUser()){
+             window.location.href = "./index.html";
+        }else{
+            alert("아이디와 비밀번호를 확인해주세요!");
+        }
+    }
+
+
+    function checkUser(){
+        var userIdVal = id.value.trim();
+        var pwdVal = userPwd.value.trim();
+
+        //alert(userIdVal + "  " + pwdVal);
+        var userList = JSON.parse(localStorage.getItem("userList"));
+
+        console.log(userList);
+
+        for(var i in userList){
+            if((userList[i].userId == userIdVal) && (userList[i].userPwd == pwdVal) ){
+                alert("로그인 성공!");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function displayEntry(){
+            var $table = $("#tbl-entry");
+            $table.html("<tr><th>아이디</th><th>비밀번호</th><th>이름</th><th>핸드폰</th><th>생일</th><th>성별</th></tr>");
+    
+            var userList = JSON.parse(localStorage.getItem("userList"));
+    
+            $.each(userList, function(i, userInfo){
+                console.log(i, userInfo);
+                var d = new Date(userInfo.userBirth);
+                var tr = "<tr>"
+                        + "<td>" + userInfo.userId + "</td>"
+                        + "<td>" + userInfo.userPwd + "</td>"
+                        + "<td>" + userInfo.userName + "</td>"
+                        + "<td>" + userInfo.userPhone + "</td>"
+                        + "<td>" + (d.getMonth() + 1) + "/" +  d.getDate() + "</td>"
+                        + "<td>" + userInfo.userGender + "</td>"
+                        + "<tr>";
+    
+                $table.append(tr);
+            });
+        }
+    </script>
+    
+</body>
+</html>

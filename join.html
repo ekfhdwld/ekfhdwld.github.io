@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <script src="js/jquery-3.5.1.js"></script>
+    <style>
+    h1 {
+        text-align: center;
+        font-size: 70px;
+        color: steelblue;
+        margin-bottom: 10px;
+    }    
+
+    #container{
+        width: 100%;
+        height: 80%;
+        text-align: center;
+    }
+
+    #join-wrapper{
+        display: inline-block;
+        border: 10px solid steelblue;
+        width: 400px;
+        padding: 10px;
+        text-align: left;
+    }
+
+    label{
+        font-size: 20px;
+    }
+
+    .join_row{
+        /* text-align: center;  */
+        margin-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+
+    .join_title{
+        margin: 5px;
+    }
+    
+    .inputUserInfo{
+        width: 350px;
+        height: 30px;
+        font-size: 20px;
+    }
+
+    .checkImg{
+        margin-left: 30px;
+        display: none; 
+        /*나중에 지우기*/
+    }
+
+    #gender-f{
+        margin-left: 50px;
+    }
+
+   .submit_row{
+       width: 300px;
+       height: 50px;
+       border: 2px solid steelblue;
+       text-align: center;
+       position: relative;
+       overflow: hidden;
+       margin : 20px auto;
+       margin-top: 30px;
+   }
+
+   .submit_row a{
+     font-family: arial;
+     font-weight: bold;
+     font-size: 30px;
+     color: steelblue;
+     text-decoration: none;
+     transition: all .5s ease;
+     z-index: 2;
+     line-height: 50px;
+     text-align: center;
+     position: relative;
+   }
+
+   .eff{
+        width:300px;
+        height:50px;
+        border:0px solid steelblue;
+        position:absolute;
+        transition:all .5s ease;
+        z-index:1;
+        box-sizing:border-box;
+    }
+
+    .submit_row:hover .eff{
+        border:70px solid steelblue;
+    }
+    .submit_row:hover a{
+        color:#fff;
+    }
+
+    </style>
+    <script>
+        var date = new Date;
+        var year = date.getFullYear();              //yyyy
+        var month = (1 + date.getMonth());          //M
+        month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+        var day = date.getDate();                   //d
+        day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+        var dateFormat =  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+    </script>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form action="" method="POST">
+           <div id="container">
+            <div id="join-wrapper">
+                <div class="join_row" >
+                    <h3 class="join_title"><label for="id">아이디</label></h3>
+                    <input type="text" id="id" name="id" class="inputUserInfo" title="ID" maxlength="20">
+                    <img src="/images/unnamed.png" id="img-id" alt="" style="width: 20px ;height: 20px;" class="checkImg">
+                </div>
+                <div class="join_row">
+                    <h3 class="join_title"><label for="password">비밀번호</label></h3>
+                    <input type="password" id="password" name="password" class="inputUserInfo" title="비밀번호 입력"  maxlength="20">
+                    <img src="/images/unnamed.png" id="img-pwd" alt="" style="width: 20px ;height: 20px;" class="checkImg">
+                </div>
+                <div class="join_row">
+                    <h3 class="join_title"><label for="passwordCheck">비밀번호 확인</label></h3>
+                    <input type="password" id="passwordCheck" name="passwordCheck" class="inputUserInfo" title="비밀번호 확인"  maxlength="20">
+                    <img src="/images/unnamed.png" id="img-pwdCheck" alt="" style="width: 20px ;height: 20px;" class="checkImg">
+                </div>
+                <div class="join_row">
+                    <h3 class="join_title"><label for="userName">이름</label></h3>
+                    <input type="text" id="userName" name="userName" class="inputUserInfo" title="이름" maxlength="6">
+                    <img src="/images/unnamed.png" id="img-name"  alt="" style="width: 20px ;height: 20px;" class="checkImg">
+                </div>
+                <div class="join_row">
+                    <h3 class="join_title"><label for="phone">핸드폰</label></h3>
+                    <input type="tel" name="phone" id="phone" class="inputUserInfo" title="핸드폰번호" maxlength="11" placeholder=" (-) 빼고 입력해주세요">
+                    <img src="/images/unnamed.png" id="img-phone" alt="" style="width: 20px ;height: 20px;" class="checkImg">
+                </div>
+                <div class="join_row">
+                    <h3 class="join_title"><label for="birthday">생년월일</label></h3>
+                    <input type="date" name="birthday" id="birthday" class="inputUserInfo" title="생년월일">
+                </div>
+                <div class="join_row">
+                    <h3 class="join_title"><label for="gender">성별</label></h3>
+                    <input type="radio" name="gender" id="gender-m" value="male" checked>
+                    <label for="gender-m">남</label>
+                    <input type="radio" name="gender" id="gender-f" value="female">
+                    <label for="gender-f">여</label>
+                </div>
+                <div class="submit_row">
+                    <div class="eff"></div>
+                    <a href="#">Sign up</a>
+                </div>
+               </div>
+           </div>
+        </form>
+        
+    <script>
+    birthday.value = dateFormat;
+
+    $(".submit_row").click(function(){
+        if(checkForm()) {
+            alert("회원가입을 축하합니다!");
+            saveInfo();
+            window.location.href = "login.html";
+        }
+
+    });
+
+    function checkForm(){
+        // 아이디
+        var userIdVal = id.value.trim();
+        if((/^\w{4,10}$/.test(userIdVal) && /^[a-z]/.test(userIdVal)) == false){
+            alert("아이디는 4~10글자입니다. 올바른 아이디를 입력하세요!");
+            id.value = '';
+            return false;
+        }
+
+        var pwd = password.value.trim();
+        var pwdCheck = passwordCheck.value.trim();
+        //비밀번호
+        if((/^.{8,12}/.test(pwd) && /\d/.test(pwd) && /[*!&]/.test(pwd)) == false){
+            alert("비밀번호가 유효하지 않습니다.\n" + 
+                    "비밀번호는 8-12글자, 숫자하나포함, *!& 중 하나의 특수문자가 포함되어야 합니다.");
+            password.value ='';
+            return false;
+        }
+
+        //비밀번호확인
+        if(pwd != pwdCheck){
+            alert("비밀번호가 일치하지 않습니다.");
+            password.value = '';
+            passwordCheck.value = '';
+            password.focus(); // 사용자가 다시 입력하기 편하도록 focusing
+            return false;
+        }
+        
+        // 이름
+        if(/^[가-힣]{2,}$/.test(userName.value) == false){
+            alert("유효한 한글이름을 입력해주세요.");
+            return false;
+        }
+
+        //핸드폰
+        var phoneNum = phone.value.trim();
+        //
+        if((/^[010]/.test(phoneNum) && /\d{11,}/.test(phoneNum)) == false){
+            alert("핸드폰 번호를 다시 확인해주세요");
+            phone.value = '';
+            return false;
+        }
+
+        return true;
+    }
+
+
+    function saveInfo(){
+        var userInfo = {
+            userId : $("#id").val(),
+            userPwd : $("#password").val(),
+            userName : $("#userName").val(),
+            userPhone : $("#phone").val(),
+            userBirth : $("#birthday").val(),
+            userGender : $('input[name="gender"]:checked').val()
+        };
+
+        var userList = JSON.parse(localStorage.getItem("userList"));
+
+        if(userList == null) userList = [];
+        
+        userList.push(userInfo);//js
+        var jsonStr = JSON.stringify(userList);//json
+        localStorage.setItem("userList", jsonStr); //json
+
+        var inputList = document.querySelectorAll("input");
+        for(var i = 0; i <inputList.length-1; i++){
+            inputList[i].value = '';
+        }
+        birthday.value = dateFormat;
+    }
+    </script>
+</body>
+</html>
